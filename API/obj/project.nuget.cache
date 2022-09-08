@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "31mwHNhWAxfXgxv5kDVoH/uYq8u/8z6cDfmxbCZv5yNt1nmTlDSgK2I3AVRXFKbJ3nfQ++sv4P8eMkYkfCgQtQ==",
+  "dgSpecHash": "JUKqgFPVCj8jPaEPDfXWjOdmIqZ5njUUjjbkIvPtFOEXoSB3N4F/XV4Kzp6ypmH+InWaxJJLJxRQsAMlx3hnDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\isacg\\source\\repos\\Learnify\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\isacg\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\isacg\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.4\\microsoft.data.sqlite.core.5.0.4.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.4\\microsoft.entityframeworkcore.5.0.4.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.4\\microsoft.entityframeworkcore.abstractions.5.0.4.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.4\\microsoft.entityframeworkcore.analyzers.5.0.4.nupkg.sha512",
+    "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.4\\microsoft.entityframeworkcore.design.5.0.4.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.4\\microsoft.entityframeworkcore.relational.5.0.4.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\5.0.4\\microsoft.entityframeworkcore.sqlite.5.0.4.nupkg.sha512",
     "C:\\Users\\isacg\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\5.0.4\\microsoft.entityframeworkcore.sqlite.core.5.0.4.nupkg.sha512",
