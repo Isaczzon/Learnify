@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import './App.css';
-import DetailPage from './sass/pages/DetailPage';
-import Homepage from './sass/pages/Homepage';
-import Login from './sass/pages/Login';
+import DetailPage from './pages/DetailPage';
+import Homepage from './pages/Homepage';
+import Login from './pages/Login';
 
 function App() {
   return <>
