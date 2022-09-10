@@ -1,46 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import logo from './logo.svg';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
+import DetailPage from './sass/pages/DetailPage';
+import Homepage from './sass/pages/Homepage';
+import Login from './sass/pages/Login';
 
 function App() {
-  const [courses, setCourses] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/courses").then((response) => { 
-      console.log(response)
-      setCourses(response.data)
-    })
-  }, [])
-
-  return (
-    <div className="App">
-      <ul>
-        {courses.map((course: any, index) => {
-          return (
-            <li key={index}>
-              {course.id}
-              {course.title}
-            </li>
-          )
-        })}
-      </ul>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+  return <>
+    <Switch>
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/detail" component={DetailPage} />
+    </Switch>
+  </>;
 }
 
 export default App;
