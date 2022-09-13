@@ -37,7 +37,7 @@ const Navigation = () => {
                         className="nav__right__search__input"
                         placeholder="Search Courses..."
                         />
-                        <button title="Search-button" type="button" className="nav__right__search__button">
+                        <button title="Search button" type="button" className="nav__right__search__button">
                             <FaIcons.FaSearch />
                         </button>
                     </form>
