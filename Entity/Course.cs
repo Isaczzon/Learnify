@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace Entity
 {
-    public class Course
+    public class Course : BaseEntity
     {
         public Guid Id { get; set; }
 
@@ -11,5 +12,11 @@ namespace Entity
         public string Instructor { get; set; }
         public decimal Rating { get; set; }
         public string Image { get; set; }
+        public string  SubTitle { get; set; }
+        public string Description { get; set; }
+        public int Students { get; set; }
+        public string Language { get; set; }
+        public string Level { get; set; }
+        public ICollection<Requirement> Requirements { get; set; }
     }
 }
