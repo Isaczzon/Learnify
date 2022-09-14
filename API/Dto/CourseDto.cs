@@ -19,6 +19,6 @@ namespace API.Dto
         public ICollection<RequirementDto> Requirements { get; set; }
         public ICollection<LearningDto> Learnings { get; set; }
         public string Category { get; set; }
-        public DateTime LastUpdated { get; set; } = DateTime.Now;
+        public DateTime LastUpdated { get; set; }
     }
 }
