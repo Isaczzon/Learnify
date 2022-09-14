@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Entity.Specifications
+namespace Entity.Specification
 {
-    public interface ISpecifications<T>
+    public interface ISpecification<T>
     {
          Expression<Func<T, bool>> Criteria {get;}
 

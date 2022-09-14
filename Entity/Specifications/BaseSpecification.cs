@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Entity.Specifications
+namespace Entity.Specification
 {
-    public class BaseSpecification<T> : ISpecifications<T>
+    public class BaseSpecification<T> : ISpecification<T>
     {
         public BaseSpecification(Expression<Func<T, bool>> criteria)
         {
