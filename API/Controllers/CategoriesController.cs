@@ -11,9 +11,9 @@ namespace API.Controllers
 {
     public class CategoriesController : BaseController
     {
-        private readonly ICategoryRepository _repository;
         private readonly IMapper mapper;
-        public CategoriesController(ICategoryRepository repository, IMapper mapper)
+        private readonly IGenericRepository<Category> _repository;
+        public CategoriesController(IGenericRepository<Category> repository, IMapper mapper)
         {
             this.mapper = mapper;
             _repository = repository;
@@ -22,14 +22,14 @@ namespace API.Controllers
 
         public async Task<ActionResult<IReadOnlyList<CategoriesDto>>> GetCategories()
         {
-            var categories = await _repository.GetCategoriesAsync();
+            var categories = await _repository.ListAllAsync();
             return Ok(this.mapper.Map<IReadOnlyList<Category>, IReadOnlyList<CategoriesDto>>(categories));
         }
         [HttpGet("{id}")]
 
         public async Task<ActionResult<CategoryDto>> GetCategory(int id)
         {
-            var category = await _repository.GetCategoriesByIdAsync(id);
+            var category = await _repository.GetByIdAsync(id);
             return this.mapper.Map<Category, CategoryDto>(category);
         }
     }
