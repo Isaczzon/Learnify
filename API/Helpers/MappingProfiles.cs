@@ -14,6 +14,10 @@ namespace API.Helpers
             CreateMap<Requirement, RequirementDto>();
 
             CreateMap<Learning, LearningDto>();
+
+            CreateMap<Category, CategoryDto>();
+
+            CreateMap<Category, CategoriesDto>();
         }
     }
 }
