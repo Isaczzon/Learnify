@@ -17,10 +17,10 @@ namespace Infrastructure
 
         public async Task<Course> GetCourseByIdAsync(Guid id)
         {
-            return await _context.Courses
-            .Include(c => c.Category)
-            .Include(c => c.Learnings)
-            .Include(c => c.Requirements)
+            return await _context.Courses   //
+            .Include(c => c.Category)       //
+            .Include(c => c.Learnings)      // ApplySpec(spec)
+            .Include(c => c.Requirements)   //
             .FirstOrDefaultAsync(x => x.Id == id);
         }
 
