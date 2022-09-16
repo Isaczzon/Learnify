@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using Entity.Interfaces;
 using API.Helpers;
 using API.Middleware;
+using API.ErrorResponse;
 
 namespace API
 {
@@ -50,6 +51,23 @@ namespace API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+            });
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = ActionContext =>
+                {
+                    var errors = ActionContext.ModelState
+                    .Where(e => e.Value.Errors.Count > 0)
+                    .SelectMany(x => x.Value.Errors)
+                    .Select(x => x.ErrorMessage).ToArray();
+
+                    var errorResponse = new ApiValidationErrorResponse
+                    {
+                        Errors = errors
+                    };
+
+                    return new BadRequestObjectResult(errorResponse);
+                };
             });
         }
 
