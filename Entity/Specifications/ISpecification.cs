@@ -14,5 +14,10 @@ namespace Entity.Specification
 
          Expression<Func<T, object>> SortByDescending {get;}
 
+         int Take {get;}
+
+         int Skip {get;}
+
+         bool IsPaging {get;}
     }
 }

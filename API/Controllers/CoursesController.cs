@@ -21,16 +21,16 @@ namespace API.Controllers
             _repository = repository;
             this.mapper = mapper;
         }
-        [HttpGet]
 
-        public async Task<ActionResult<List<CourseDto>>> GetCourses(string sort, int? categoryId)
+        [HttpGet]
+        public async Task<ActionResult<List<CourseDto>>> GetCourses([FromQuery]CourseParams courseParams)
         {
-            var spec = new CoursesWithCategoriesSpecification(sort, categoryId);
+            var spec = new CoursesWithCategoriesSpecification(courseParams);
             var courses = await _repository.ListWithSpec(spec);
             return Ok(this.mapper.Map<IReadOnlyList<Course>, IReadOnlyList<CourseDto>>(courses));
         }
-        [HttpGet("{id}")]
 
+        [HttpGet("{id}")]
         public async Task<ActionResult<CourseDto>> GetCourse(Guid id)
         {
             var spec = new CoursesWithCategoriesSpecification(id);
