@@ -3,7 +3,7 @@ import { Course } from '../models/course';
 import agent from '../actions/agent';
 import {Row} from 'antd';
 import { PaginatedCourse } from '../models/paginatedCourse';
-import ShowCourses from '../components/Courses';
+import ShowCourses from '../components/ShowCourses';
 
 const Homepage = () => {
     const [data, setData] = useState<PaginatedCourse>();
@@ -24,7 +24,7 @@ const Homepage = () => {
                 return <ShowCourses key={index} course={course}/> 
             })}
         </Row>
-    </div>;
+    </div>
 };
 
 export default Homepage;
