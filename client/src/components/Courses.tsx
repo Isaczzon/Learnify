@@ -3,10 +3,11 @@ import { Course } from '../models/course';
 import agent from '../actions/agent';
 import {Row, Col, Card} from 'antd';
 import * as FaIcons from 'react-icons/fa';
+import { PaginatedCourse } from '../models/paginatedCourse';
 
 const Courses = () => {
-    const [courses, setCourse] = useState<Course[]>([])
-    const [spanVal, setSpanVal] = useState<number>()
+    const [data, setData] = useState<PaginatedCourse>();
+    const [spanVal, setSpanVal] = useState<number>();
 
     const checkWidth = (): void => {
         if(window.innerWidth > 1024) {
@@ -20,7 +21,7 @@ const Courses = () => {
 
     useEffect(() => {
         agent.Courses.list().then((response) => {
-            setCourse(response);
+            setData(response);
             checkWidth();
         });
     }, []);
@@ -33,9 +34,9 @@ const Courses = () => {
     const showStars = (rating: number): [] => {
         const options: any = [];
         for (let i = 1; i < rating; i++) {
-          options.push(<FaIcons.FaStar />);
+          options.push(<FaIcons.FaStar key={i} />);
           if (rating - i < 1 && rating - i > 0.3) {
-            options.push(<FaIcons.FaStarHalf />);
+            options.push(<FaIcons.FaStarHalf key={i + 1} />);
           }
         }
         return options;
@@ -47,7 +48,7 @@ const Courses = () => {
             <h2>New Courses picked just for you...</h2>
         </div>
         <Row gutter={[24, 32]}>
-            {courses.map((course: Course, index: number) => {
+            {data && data.data.map((course: Course, index: number) => {
                 return (
                     <Col key={index} className="gutter-row" span={spanVal}>
                         <Card hoverable cover={<img width="100%" alt="course-cover" src={course.image} />}>
