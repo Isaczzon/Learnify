@@ -3,7 +3,7 @@ import { Course } from '../models/course';
 import agent from '../actions/agent';
 import {Row} from 'antd';
 import { PaginatedCourse } from '../models/paginatedCourse';
-import ShowCourses from '../components/ShowCourses';
+import ShowCourses from '../components/Courses';
 
 const Homepage = () => {
     const [data, setData] = useState<PaginatedCourse>();
