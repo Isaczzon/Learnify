@@ -1,12 +1,13 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
-import { Course } from '../models/course';
-import agent from '../actions/agent';
-import {Row, Col, Card} from 'antd';
-import * as FaIcons from 'react-icons/fa';
-import { PaginatedCourse } from '../models/paginatedCourse';
+import { Card, Col } from "antd";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import * as FaIcons from "react-icons/fa";
+import { Course } from "../models/course";
 
-const Courses = () => {
-    const [data, setData] = useState<PaginatedCourse>();
+interface Props {
+    course: Course;
+}
+
+const ShowCourses = ({course} : Props) => {
     const [spanVal, setSpanVal] = useState<number>();
 
     const checkWidth = (): void => {
@@ -19,16 +20,13 @@ const Courses = () => {
     }
 };
 
-    useEffect(() => {
-        agent.Courses.list().then((response) => {
-            setData(response);
-            checkWidth();
-        });
-    }, []);
-
     useLayoutEffect(() => {
         window.addEventListener("resize", checkWidth);
         return () => window.addEventListener("resize", checkWidth);
+    }, []);
+
+    useEffect(() => {
+        checkWidth();
     }, []);
 
     const showStars = (rating: number): [] => {
@@ -42,15 +40,8 @@ const Courses = () => {
         return options;
       };
 
-    return <div className="course">
-        <div className="course__header">
-            <h1>What to learn next?</h1>
-            <h2>New Courses picked just for you...</h2>
-        </div>
-        <Row gutter={[24, 32]}>
-            {data && data.data.map((course: Course, index: number) => {
-                return (
-                    <Col key={index} className="gutter-row" span={spanVal}>
+  return <>
+  <Col className="gutter-row" span={spanVal}>
                         <Card hoverable cover={<img width="100%" alt="course-cover" src={course.image} />}>
                             <div className="course__title">{course.title}</div>
                             <div className="course__instructor">{course.instructor}</div>
@@ -61,10 +52,7 @@ const Courses = () => {
                             <div className="course__price">{course.price}</div>
                         </Card>
                     </Col>
-                )
-            })}
-        </Row>
-    </div>;
+  </>;
 };
 
-export default Courses;
+export default ShowCourses;
