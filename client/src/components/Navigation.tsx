@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as FaIcons from "react-icons/fa";
-import Logo from "../Assets/logo.png";
+import Logo from "../assets/logo.png";
 
 const Navigation = () => {
     const [sidebar, setSidebar] = useState(false);
