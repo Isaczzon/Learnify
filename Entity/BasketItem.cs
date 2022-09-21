@@ -10,7 +10,7 @@ namespace Entity
 
         public Course Course { get; set; }
 
-        public int BaskeId { get; set; }
+        public int BasketId { get; set; }
 
         public Basket Basket { get; set; }
     }
