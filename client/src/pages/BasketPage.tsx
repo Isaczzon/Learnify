@@ -80,7 +80,7 @@ const BasketPage = () => {
         {total! > 0 && (
           <div className="basket-page__body__summary">
             <h2>Total:</h2>
-            <div className="basket-page__body__summary">
+            <div className="basket-page__body__summary__total">
               $ {total ? total : 0}
             </div>
             <Link to="/basket">
