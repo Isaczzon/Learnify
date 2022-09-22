@@ -2,9 +2,8 @@ import { Card, Col } from "antd";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import agent from "../actions/agent";
 import { Course } from "../models/course";
-import { setBasket } from "../redux/slice/basketSlice";
+import { addBasketItemAsync } from "../redux/slice/basketSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 interface Props {
@@ -47,12 +46,6 @@ const ShowCourses = ({ course }: Props) => {
     return options;
   };
 
-  const addToCart = (courseId: string) => {
-    agent.Baskets.addItem(courseId)
-      .then((response) => dispatch(setBasket(response)))
-      .catch((error) => console.log());
-  };
-
   return (
     <>
       <Col className="gutter-row" span={spanVal}>
@@ -77,7 +70,7 @@ const ShowCourses = ({ course }: Props) => {
               </Link>
             ) : (
               <div
-                onClick={() => addToCart(course.id)}
+                onClick={() => dispatch(addBasketItemAsync({courseId: course.id}))}
                 className="course__bottom__cart"
               >
                 Add to Cart
