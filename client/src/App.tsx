@@ -9,11 +9,12 @@ import Category from './components/Categories';
 import CategoryPage from './pages/CategoryPage';
 import DescriptionPage from './pages/DescriptionPage';
 import BasketPage from './pages/BasketPage';
-import { useStoreContext } from './context/StoreContext';
 import agent from './actions/agent';
+import { useAppDispatch } from './redux/store/configureStore';
+import { setBasket } from './redux/slice/basketSlice';
 
 function App() {
-  const { setBasket } = useStoreContext();
+  const dispatch = useAppDispatch();
 
   function getCookie(name: string) {
     return (
@@ -28,11 +29,11 @@ function App() {
       if (clientId) {
         agent.Baskets.get()
         .then((basket) => {
-          setBasket(basket)
+          dispatch(setBasket(basket));
         })
         .catch((error) => console.log(error));
       }
-    }, [setBasket]);
+    }, [dispatch]);
 
   return <>
   <Navigation />
