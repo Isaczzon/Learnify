@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Course } from "../models/course";
-import { Card, Col, Radio, Row } from "antd";
+import { Card, Col, Pagination, Radio, Row } from "antd";
 import ShowCourses from "../components/ShowCourses";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 import {
   coursesSelector,
   getCoursesAsync,
   setCourseParams,
+  setPageNumber,
 } from "../redux/slice/courseSlice";
 import { categoriesSelector } from "../redux/slice/categorySlice";
 import { Category } from "../models/category";
@@ -20,7 +21,7 @@ const sortOptions = [
 const Homepage = () => {
   const courses = useAppSelector(coursesSelector.selectAll);
   const dispatch = useAppDispatch();
-  const { coursesLoaded, courseParams } = useAppSelector(
+  const { coursesLoaded, courseParams, pagination } = useAppSelector(
     (state) => state.course
   );
 
@@ -29,6 +30,10 @@ const Homepage = () => {
   }, [coursesLoaded, dispatch]);
 
   const categories = useAppSelector(categoriesSelector.selectAll);
+
+  function onChange(pagenNumber: number) {
+    dispatch(setPageNumber({pageIndex: pagenNumber}))
+  }
 
   const getCategories = () => {
     const catArray: any[] = [];
@@ -72,6 +77,16 @@ const Homepage = () => {
                 return <ShowCourses key={index} course={course} />;
               })}
           </Row>
+          <div className="pagination">
+            {pagination && (
+              <Pagination
+                defaultCurrent={pagination?.pageIndex}
+                total={pagination?.totalCount}
+                pageSize={pagination?.pageSize}
+                onChange={onChange}
+              />
+            )}
+          </div>
         </Col>
       </Row>
     </div>
