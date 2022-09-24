@@ -11,14 +11,14 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Services
 {
-    public class TokenServices
+    public class TokenService
     {
-        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _config;
-        public TokenServices(UserManager<User> userManager, IConfiguration config)
+        private readonly UserManager<User> _userManager;
+        public TokenService(UserManager<User> userManager, IConfiguration config)
         {
-            _config = config;
             _userManager = userManager;
+            _config = config;
 
         }
 
@@ -31,12 +31,13 @@ namespace Infrastructure.Services
             };
 
             var roles = await _userManager.GetRolesAsync(user);
-            foreach (var role in roles)
+
+            foreach(var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:TokenKey"]));
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
