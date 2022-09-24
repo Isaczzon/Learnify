@@ -11,8 +11,8 @@ namespace API.Controllers
     public class UsersController : BaseController
     {
        private readonly UserManager<User> _userManager;
-        private readonly TokenServices _tokenService;
-        public UsersController(UserManager<User> userManager, TokenServices tokenService)
+        private readonly TokenService _tokenService;
+        public UsersController(UserManager<User> userManager, TokenService tokenService)
         {
             _tokenService = tokenService;
             _userManager = userManager;
@@ -40,7 +40,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            var user = new User { UserName = registerDto.Username, Email = registerDto.Email };
+            var user = new User { UserName = registerDto.UserName, Email = registerDto.Email };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
