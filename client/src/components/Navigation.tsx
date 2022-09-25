@@ -38,7 +38,13 @@ const Navigation = () => {
                 </li>
 
                 <li className="nav-menu-items__header">Navigation</li>
-                <li>Courses</li>
+                <Link to="/">
+                  {" "}
+                  <li>Courses</li>{" "}
+                </Link>
+                <Link to="/">
+                  <li>Login</li>
+                </Link>
               </ul>
             </nav>
           </div>
