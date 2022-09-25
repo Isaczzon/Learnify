@@ -1,12 +1,19 @@
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Card, Form, Input, notification, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import agent from "../actions/agent";
 import { Register } from "../models/user";
+import { registerUser } from "../redux/slice/userSlice";
+import { useAppDispatch } from "../redux/store/configureStore";
 
 const { Text, Title } = Typography;
 
-const RegisterComponent = () => {
+interface Props {
+  toggleRegister: () => void;
+}
+
+const RegisterComponent = ({ toggleRegister }: Props) => {
+  const dispatch = useAppDispatch();
+
   const [values, setValues] = useState<Register>({
     email: "",
     password: "",
@@ -19,17 +26,30 @@ const RegisterComponent = () => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
+  const [form] = Form.useForm();
+
+  const resetForm = () => {
+    setValues({ ...values, email: "", password: "" });
+    form.resetFields();
+  };
 
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (
-      email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) &&
-      password.length >= 6 &&
-      username.length >= 5
-    ) {
-      const response = await agent.Users.register(values);
-      setValues({ ...values, email: "", password: "", username: "" });
-      console.log(response);
+    try {
+      if (
+        email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) &&
+        password.length >= 6 &&
+        username.length >= 5
+      ) {
+        await dispatch(registerUser(values));
+      }
+      resetForm();
+    } catch (err: any) {
+      console.log(err);
+      notification.error({
+        message: "Please check your credentials",
+      });
+      resetForm();
     }
   };
 
@@ -41,7 +61,7 @@ const RegisterComponent = () => {
             <Title level={2} className="log-in-card__intro-title">
               Sign up with Learnify!
             </Title>
-            <Text>Use your Username, Email and Password to Register!</Text>
+            <Text>Use your Username, Email and Password to Register</Text>
           </Typography>
         </div>
         <Content className="log-in__form">
@@ -52,6 +72,7 @@ const RegisterComponent = () => {
             initialValues={{ remember: true }}
             autoComplete="off"
             onSubmitCapture={submitUser}
+            form={form}
           >
             <Form.Item
               label="Username"
@@ -66,7 +87,6 @@ const RegisterComponent = () => {
             >
               <Input value={username} name="username" onChange={handleChange} />
             </Form.Item>
-
             <Form.Item
               label="Email"
               name="email"
@@ -105,10 +125,11 @@ const RegisterComponent = () => {
             </Form.Item>
           </Form>
         </Content>
-        <div className="log-in-card__toggle">Already a user? Sign in</div>
+        <div onClick={toggleRegister} className="log-in-card__toggle">
+          Already a User? Sign in
+        </div>
       </Card>
     </>
   );
 };
-
 export default RegisterComponent;
