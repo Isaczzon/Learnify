@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20220926092334_PaymentIntentAdded")]
+    [Migration("20220926102712_PaymentIntentAdded")]
     partial class PaymentIntentAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -259,15 +259,15 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d9fe4b5-558a-4a5f-9f5a-2d2938348568",
-                            ConcurrencyStamp = "283f3a3b-828a-4929-94f5-b69e8dd6c47e",
+                            Id = "a234cf5d-a4d8-4d1b-8022-d3edd10e62ef",
+                            ConcurrencyStamp = "56bb8eba-72b0-4de2-8ee5-ebe8b5186ae7",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "0e359751-9839-4e78-959a-f3958c25d14f",
-                            ConcurrencyStamp = "9db852c3-0666-4d57-aec5-226676785fa3",
+                            Id = "c543105d-96c6-4ba9-913a-970e7472521b",
+                            ConcurrencyStamp = "fda2618b-abea-4995-a21c-a12aa9e7742d",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
