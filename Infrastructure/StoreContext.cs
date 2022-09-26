@@ -22,6 +22,8 @@ namespace Infrastructure
 
         public DbSet<Basket> Baskets { get; set; }
 
+        public DbSet<UserCourse> UserCourses { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,6 +36,19 @@ namespace Infrastructure
                 new IdentityRole{Name = "Student", NormalizedName = "STUDENT"},
                 new IdentityRole{Name = "Instructor", NormalizedName = "INSTRUCTOR"}
             );
+
+            builder.Entity<UserCourse>()
+                .HasKey(uc => new {uc.UserId, uc.CourseId});
+
+                builder.Entity<UserCourse>()
+                .HasOne(uc => uc.User)
+                .WithMany(u => u.UserCourses)
+                .HasForeignKey(uc => uc.UserId);
+
+                 builder.Entity<UserCourse>()
+                .HasOne(uc => uc.Course)
+                .WithMany(c => c.UserCourses)
+                .HasForeignKey(uc => uc.CourseId);
         }
     }
 }
