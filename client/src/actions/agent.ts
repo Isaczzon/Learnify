@@ -32,6 +32,7 @@ const Users = {
   login: (values: Login) => requests.post<User>("users/login", values),
   register: (values: Register) => requests.post<User>("users/register", values),
   addCourse: () => requests.post("users/purchaseCourses", {}), // Why not type User?
+  currentUser: () => requests.get<User>("users/currentUser"),
 }
 
 const Courses = {
