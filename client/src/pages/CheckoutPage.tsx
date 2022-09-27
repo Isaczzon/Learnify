@@ -20,6 +20,6 @@ export default function CheckoutPage() {
   return (
     <Elements stripe={stripePromise}>
       <Checkout />
-    </Elements>
+    </Elements> //Hej svej
   );
 }
