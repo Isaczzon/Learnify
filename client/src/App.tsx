@@ -1,52 +1,59 @@
-import React, { useEffect } from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import 'antd/dist/antd.min.css';
+import './sass/main.scss';
 import DetailPage from './pages/DetailPage';
 import Homepage from './pages/Homepage';
-import Login from './pages/Login';
+import LoginPage from './pages/Login';
 import Navigation from './components/Navigation';
-import "antd/dist/antd.min.css";
-import Category from './components/Categories';
+import Categories from './components/Categories';
 import CategoryPage from './pages/CategoryPage';
 import DescriptionPage from './pages/DescriptionPage';
 import BasketPage from './pages/BasketPage';
-import agent from './actions/agent';
+import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from './redux/store/configureStore';
-import { setBasket } from './redux/slice/basketSlice';
+import { fetchBasketAsync } from './redux/slice/basketSlice';
+import Dashboard from './pages/Dashboard';
+import { fetchCurrentUser } from './redux/slice/userSlice';
+import PrivateRoute from './components/PrivateRoute';
+import CheckoutPage from './pages/CheckoutPage';
+import Loading from './components/Loading';
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
 
-  function getCookie(name: string) {
-    return (
-      document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() ||
-      ''
-    );
-  }
 
-    useEffect(() => {
-      const clientId = getCookie("clientId")
+  const appInit = useCallback(async () => {
+    try {
+      await dispatch(fetchCurrentUser());
+      await dispatch(fetchBasketAsync());
+    } catch (error: any) {
+      console.log(error);
+    }
+  }, [dispatch]);
 
-      if (clientId) {
-        agent.Baskets.get()
-        .then((basket) => {
-          dispatch(setBasket(basket));
-        })
-        .catch((error) => console.log(error));
-      }
-    }, [dispatch]);
+  useEffect(() => {
+    appInit().then(() => setLoading(false));
+  }, [appInit]);
 
-  return <>
-  <Navigation />
-  <Route exact path="/" component={Category} />
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      <Route exact path="/category/:id" component={CategoryPage} />
-      <Route exact path="/basket" component={BasketPage} />
-      <Route exact path="/course/:id" component={DescriptionPage} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/detail" component={DetailPage} />
-    </Switch>
-  </>;
+  if (loading) return <Loading />;
+
+  return (
+    <>
+      <Navigation />
+      <Route exact path="/" component={Categories} />
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/course/:id" component={DescriptionPage} />
+        <PrivateRoute exact path="/profile" component={Dashboard} />
+        <Route exact path="/category/:id" component={CategoryPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/detail" component={DetailPage} />
+        <Route exact path="/basket" component={BasketPage} />
+        <PrivateRoute exact path="/checkout" component={CheckoutPage} />
+      </Switch>
+    </>
+  );
 }
 
 export default App;

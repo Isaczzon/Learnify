@@ -3,14 +3,16 @@ using System;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20220924121931_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,12 +25,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ClientId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ClientSecret")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentIntentId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -229,21 +225,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Entity.UserCourse", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("UserId", "CourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("UserCourses");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -272,15 +253,15 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "83d28053-2a72-47a3-830d-d359bcf02346",
-                            ConcurrencyStamp = "317288e5-5014-4184-9825-e9eb46822128",
+                            Id = "56d3a1a1-f3d2-48aa-8cca-4a94b14ad3aa",
+                            ConcurrencyStamp = "a89356f1-2d86-4d15-b238-619b9ea79e64",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "16407f7b-2882-43da-acbf-886c9650863d",
-                            ConcurrencyStamp = "812a7c59-8f82-4c38-9e4d-89e17e258716",
+                            Id = "18e93d8e-5b2d-4949-9445-e9dc5a8b7252",
+                            ConcurrencyStamp = "7c158689-21b4-47ab-a225-9c7b6d5f473e",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
@@ -440,25 +421,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Entity.UserCourse", b =>
-                {
-                    b.HasOne("Entity.Course", "Course")
-                        .WithMany("UserCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entity.User", "User")
-                        .WithMany("UserCourses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -525,13 +487,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Learnings");
 
                     b.Navigation("Requirements");
-
-                    b.Navigation("UserCourses");
-                });
-
-            modelBuilder.Entity("Entity.User", b =>
-                {
-                    b.Navigation("UserCourses");
                 });
 #pragma warning restore 612, 618
         }
