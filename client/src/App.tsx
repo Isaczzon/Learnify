@@ -17,6 +17,7 @@ import { fetchCurrentUser } from './redux/slice/userSlice';
 import PrivateRoute from './components/PrivateRoute';
 import CheckoutPage from './pages/CheckoutPage';
 import Loading from './components/Loading';
+import CoursePage from './pages/CoursePage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -45,12 +46,13 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/course/:id" component={DescriptionPage} />
-        <PrivateRoute exact path="/profile" component={Dashboard} />
         <Route exact path="/category/:id" component={CategoryPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/basket" component={BasketPage} />
+        <PrivateRoute exact path="/profile" component={Dashboard} />
         <PrivateRoute exact path="/checkout" component={CheckoutPage} />
+        <PrivateRoute exact path="/learn/:course/:lecture" component={CoursePage} />
       </Switch>
     </>
   );
