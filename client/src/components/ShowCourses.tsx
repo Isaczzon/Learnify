@@ -11,9 +11,12 @@ interface Props {
 }
 
 const ShowCourses = ({ course }: Props) => {
+  
   const [spanVal, setSpanVal] = useState<number>();
-
   const {basket} = useAppSelector(state => state.basket);
+  const { userCourses } = useAppSelector((state) => state.user);
+  const {currentLecture} = useAppSelector((state) => state.lecture);
+
   const dispatch = useAppDispatch();
 
   const checkWidth = (): void => {
@@ -63,19 +66,24 @@ const ShowCourses = ({ course }: Props) => {
           </div>
           <div className="course__bottom">
             <div className="course__bottom__price">{course.price}</div>
-            {basket?.items.find((item) => item.courseId === course.id) !==
-            undefined ? (
-              <Link to="/basket">
-                <div className="course__bottom__cart">Go to Cart</div>
-              </Link>
-            ) : (
-              <div
-                onClick={() => dispatch(addBasketItemAsync({courseId: course.id}))}
-                className="course__bottom__cart"
-              >
-                Add to Cart
-              </div>
-            )}
+            {userCourses?.find((item) => item.id === course.id) !==
+              undefined ? (
+                <Link to={`/learn/${course.id}/${currentLecture}`} >
+                  <div className="course__bottom__cart">Go to Course</div>
+                </Link>
+              ) : basket?.items.find((item) => item.courseId === course.id) !==
+              undefined ? (
+                <Link to="/basket">
+                  <div className="course__bottom__cart">Go to Cart</div>
+                </Link>
+              ) : (
+                <div
+                  onClick={() => dispatch(addBasketItemAsync({courseId: course.id}))}
+                  className="course__bottom__cart"
+                >
+                  Add to Cart
+                </div>
+              )}
           </div>
         </Card>
       </Col>
@@ -84,3 +92,4 @@ const ShowCourses = ({ course }: Props) => {
 };
 
 export default ShowCourses;
+

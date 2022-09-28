@@ -24,6 +24,10 @@ namespace Infrastructure
 
         public DbSet<UserCourse> UserCourses { get; set; }
 
+        public DbSet<Section> Sections { get; set; }
+
+        public DbSet<Lecture> Lectures { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

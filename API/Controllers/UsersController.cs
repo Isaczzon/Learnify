@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Dto;
@@ -129,6 +130,29 @@ namespace API.Controllers
                 Basket =  _mapper.Map<Basket, BasketDto>(basket),
                 Courses = courses.Where(x => x.UserId == user.Id).Select(u => u.Course).ToList()
             };
+        }
+
+        [Authorize]
+
+        [HttpPost("addRole")]
+
+        public async Task<ActionResult> AddRole()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            await _userManager.AddToRoleAsync(user, "Instructor");
+            
+            return Ok();
+        }
+
+        [Authorize]
+        
+        [HttpGet("unpublishedCourses")]
+
+        public List<Course> unpublishedCourses()
+        {
+            var courses = _context.Courses.Where(x => x.Instructor == User.Identity.Name).Where(x => x.Published == false).ToList();
+            return courses;
         }
 
         private async Task<Basket> ExtractBasket(string clientId)
