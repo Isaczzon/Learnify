@@ -31,7 +31,7 @@ const UserMenu = () => {
     </Menu>
   );
   return (
-    <Dropdown overlay={menu} placement="bottomCenter">
+    <Dropdown overlay={menu} placement="bottom">
       <div className="dropdown">Menu</div>
     </Dropdown>
   );

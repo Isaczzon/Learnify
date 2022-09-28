@@ -95,8 +95,8 @@ const CoursePage = ({ match }: RouteComponentProps<any>) => {
         <iframe
           width="100%"
           height="100%"
-          title="Learnify"
           src={currentVideo}
+          title="Learnify"
         ></iframe>
       </div>
     </div>

@@ -3,14 +3,16 @@ using System;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20220928172045_InitiateDb")]
+    partial class InitiateDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,15 +321,15 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "44681609-6c00-46ef-9b89-f1e5a96b1314",
-                            ConcurrencyStamp = "2622259f-f8b3-4273-94c2-c254c42c3143",
+                            Id = "ac0707cf-d6de-4a20-8a4b-af6cdba90bf0",
+                            ConcurrencyStamp = "56e6802b-8caf-4c60-8f4c-1280f2eee2fc",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "0d83558d-5c60-4a33-875e-cc08632934e0",
-                            ConcurrencyStamp = "00d26e91-fcf9-4f7a-855d-4d1402141eee",
+                            Id = "27cc6380-a962-40bc-bf4c-d37444774f0c",
+                            ConcurrencyStamp = "cd67b05c-5e2c-407c-b493-573e31cf4df4",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
