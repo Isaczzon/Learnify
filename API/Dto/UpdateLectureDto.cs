@@ -2,7 +2,7 @@ using System;
 
 namespace Entity
 {
-    public class UpdateLecture
+    public class UpdateLectureDto
     {
         public int LectureId { get; set; }
 

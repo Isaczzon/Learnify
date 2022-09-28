@@ -53,7 +53,7 @@ namespace API.Controllers
         
         [HttpPut("setCurrentLecture")]
 
-        public async Task<ActionResult> UpdateCurrentLecture([FromBody] UpdateLecture updateLectureDto)
+        public async Task<ActionResult> UpdateCurrentLecture([FromBody] UpdateLectureDto updateLectureDto)
         {
 
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
