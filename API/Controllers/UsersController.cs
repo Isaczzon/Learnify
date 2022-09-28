@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Dto;
@@ -142,6 +143,16 @@ namespace API.Controllers
             await _userManager.AddToRoleAsync(user, "Instructor");
             
             return Ok();
+        }
+
+        [Authorize]
+        
+        [HttpGet("unpublishedCourses")]
+
+        public List<Course> unpublishedCourses()
+        {
+            var courses = _context.Courses.Where(x => x.Instructor == User.Identity.Name).Where(x => x.Published == false).ToList();
+            return courses;
         }
 
         private async Task<Basket> ExtractBasket(string clientId)
