@@ -29,7 +29,6 @@ namespace API.Controllers
         [Authorize]
 
         [HttpGet("{courseId}")]
-
         public async Task<ActionResult<UserLectureDto>> GetLectures(Guid courseId)
         {
             var course = await _context.Courses.FindAsync(courseId);
@@ -50,9 +49,8 @@ namespace API.Controllers
         }
 
         [Authorize]
-        
-        [HttpPut("setCurrentLecture")]
 
+        [HttpPut("setCurrentLecture")]
         public async Task<ActionResult> UpdateCurrentLecture([FromBody] UpdateLectureDto updateLectureDto)
         {
 
@@ -68,6 +66,40 @@ namespace API.Controllers
 
             return BadRequest(new ApiResponse(400, "Problem updating the lecture"));
 
+        }
+
+        [Authorize(Roles = "Instructor")]
+
+        [HttpPost]
+        public async Task<ActionResult<string>> AddSection(AddSectionDto sectionDto)
+        {
+            var course = await _context.Courses.FindAsync(sectionDto.CourseId);
+
+            var section = new Section
+            {
+                Name = sectionDto.SectionName,
+                Course = course
+            };
+
+            _context.Sections.Add(section);
+
+            foreach (var item in sectionDto.Lectures)
+            {
+                var lecture = new Lecture
+                {
+                    Title = item.Title,
+                    Url = item.Url,
+                    Section = section
+                };
+
+                _context.Lectures.Add(lecture);
+            }
+
+            var response = await _context.SaveChangesAsync() > 0;
+
+            if (response) return "Section added successfully";
+
+            return BadRequest(new ApiResponse(400, "Problem creating section"));
         }
     }
 }
