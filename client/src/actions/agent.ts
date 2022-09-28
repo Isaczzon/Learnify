@@ -3,7 +3,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { Store } from 'redux'
 import { Basket } from '../models/basket'
 import { Category } from '../models/category'
-import { Course } from '../models/course'
+import { Course, RegisterCourse } from '../models/course'
 import { Lecture } from '../models/lecture'
 import { PaginatedCourse } from '../models/paginatedCourse'
 import { Login, Register, User } from '../models/user'
@@ -88,6 +88,7 @@ const Users = {
 const Courses = {
   list: (params?: URLSearchParams) => requests.get<PaginatedCourse>('/courses', params),
   getById: (id: string) => requests.get<Course>(`/courses/${id}`),
+  create: (data: RegisterCourse) => requests.post<string>('/courses/', data),
 }
 
 const Categories = {
