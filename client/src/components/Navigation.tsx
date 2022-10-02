@@ -10,16 +10,17 @@ import { useAppSelector } from "../redux/store/configureStore";
 import UserMenu from "./UserMenu";
 
 const Navigation = () => {
+  
   const [sidebar, setSidebar] = useState(false);
   const [searchText, setSearchText] = useState("");
-
-  const showSidebar = () => setSidebar(!sidebar);
-
   const { basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.user);
-  const dispatch = useDispatch();
   const basketCount = basket?.items.length;
   const history = useHistory();
+
+  const showSidebar = () => setSidebar(!sidebar);
+  const dispatch = useDispatch();
+
 
   const signout = () => {
     dispatch(signOut());

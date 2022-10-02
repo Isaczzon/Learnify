@@ -5,8 +5,10 @@ import { categoriesSelector, getCategoriesAsync } from "../redux/slice/categoryS
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const Categories = () => {
+
   const categories = useAppSelector(categoriesSelector.selectAll);
   const {categoriesLoaded} = useAppSelector(state => state.category);
+  
   const dispatch = useAppDispatch();
 
   useEffect(() => {

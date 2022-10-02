@@ -8,10 +8,9 @@ interface Props {
   handleSubmit: (event: SyntheticEvent) => Promise<void>;
 }
 
-const CheckoutSummary = ({ stripe, handleSubmit }: Props) => {
-
+  const CheckoutSummary = ({ stripe, handleSubmit }: Props) => {
+    
   const { basket } = useAppSelector((state) => state.basket);
-  
   const total = basket?.items.reduce((sum, item) => sum + item.price, 0);
 
   return (

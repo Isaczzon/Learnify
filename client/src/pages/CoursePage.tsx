@@ -13,11 +13,10 @@ import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const CoursePage = ({ match }: RouteComponentProps<any>) => {
 
-  const { lecture, lectureLoaded, currentLecture, currentVideo } =
-    useAppSelector((state) => state.lecture);
+  const history = useHistory();
+  const { lecture, lectureLoaded, currentLecture, currentVideo } = useAppSelector((state) => state.lecture);
 
   const dispatch = useAppDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     if (!lecture) dispatch(getLecturesAsync({ courseId: match.params.course }));

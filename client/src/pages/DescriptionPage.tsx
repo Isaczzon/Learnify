@@ -6,12 +6,11 @@ import { coursesSelector, getCourseAsync } from "../redux/slice/courseSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const DescriptionPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const course = useAppSelector((state) => 
-    coursesSelector.selectById(state, id)
-  );
 
+  const { id } = useParams<{ id: string }>();
+  const course = useAppSelector((state) => coursesSelector.selectById(state, id));
   const { basket } = useAppSelector(state => state.basket);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,7 +20,6 @@ const DescriptionPage = () => {
   const getParsedDate = (strDate: any) => {
     let strSplitDate = String(strDate).split(" ");
     let date: any = new Date(strSplitDate[0]);
-    // alert(date);
     let dd: any = date.getDate();
     let mm: any = date.getMonth() + 1; //January is 0!
 

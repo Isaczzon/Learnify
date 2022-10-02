@@ -6,13 +6,17 @@ import { Register } from "../models/user";
 import { registerUser } from "../redux/slice/userSlice";
 import { useAppDispatch } from "../redux/store/configureStore";
 
-const { Text, Title } = Typography;
-
 interface Props {
   toggleRegister: () => void;
 }
 
+const { Text, Title } = Typography;
+
 const RegisterComponent = ({ toggleRegister }: Props) => {
+  
+  const [form] = Form.useForm();
+  const history = useHistory();
+
   const dispatch = useAppDispatch();
 
   const [values, setValues] = useState<Register>({
@@ -27,14 +31,11 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-  const [form] = Form.useForm();
-
+  
   const resetForm = () => {
     setValues({ ...values, email: "", password: "" });
     form.resetFields();
   };
-
-  const history = useHistory();
 
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();

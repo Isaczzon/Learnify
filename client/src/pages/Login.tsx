@@ -4,8 +4,8 @@ import RegisterComponent from "../components/Register";
 import Signin from "../components/Signin";
 
 const LoginPage = () => {
-  const [register, setRegister] = useState(false);
 
+  const [register, setRegister] = useState(false);
   const toggleRegister = () => setRegister(!register);
 
   return (

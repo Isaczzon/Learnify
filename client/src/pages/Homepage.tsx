@@ -19,17 +19,18 @@ const sortOptions = [
 ];
 
 const Homepage = () => {
+
   const courses = useAppSelector(coursesSelector.selectAll);
+  const { coursesLoaded, courseParams, pagination } = useAppSelector((state) => state.course);
+  const categories = useAppSelector(categoriesSelector.selectAll);
+
   const dispatch = useAppDispatch();
-  const { coursesLoaded, courseParams, pagination } = useAppSelector(
-    (state) => state.course
-  );
+
 
   useEffect(() => {
     if (!coursesLoaded) dispatch(getCoursesAsync());
   }, [coursesLoaded, dispatch]);
 
-  const categories = useAppSelector(categoriesSelector.selectAll);
 
   function onChange(pagenNumber: number) {
     dispatch(setPageNumber({pageIndex: pagenNumber}))

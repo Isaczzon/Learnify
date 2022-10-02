@@ -9,6 +9,12 @@ import { categoriesSelector } from '../redux/slice/categorySlice';
 import { useAppSelector } from '../redux/store/configureStore';
 
 const CreateCourse = () => {
+
+  const categories = useAppSelector(categoriesSelector.selectAll);
+  const { Option } = Select;
+  const history = useHistory();
+  const [form] = Form.useForm();
+
   const [values, setValues] =
     useState <
     RegisterCourse >
@@ -22,13 +28,7 @@ const CreateCourse = () => {
       language: '',
     });
 
-  const { title, subTitle, description, price, categoryId, level, language } =
-    values;
-
-  const categories = useAppSelector(categoriesSelector.selectAll);
-
-  const { Option } = Select;
-  const history = useHistory();
+  const { title, subTitle, description, price, categoryId, level, language } = values;
 
   const getSelectCategories = () => {
     const catArray: { value: number, label: string }[] = [];
@@ -40,8 +40,6 @@ const CreateCourse = () => {
     }
     return catArray;
   };
-
-  const [form] = Form.useForm();
 
   const formItemLayout = {
     labelCol: {

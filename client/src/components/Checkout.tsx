@@ -14,20 +14,19 @@ import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 import CheckoutSummary from "./CheckoutSummary";
 
 const Checkout = () => {
-  const [cardName, setCardName] = useState<string>("");
 
+  const [cardName, setCardName] = useState<string>("");
   const stripe = useStripe();
   const elements = useElements();
-
-  const dispatch = useAppDispatch();
   const history = useHistory();
+  const [form] = Form.useForm();
+
   const { basket } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCardName(e.target.value);
   };
-
-  const [form] = Form.useForm();
 
   const handlePayment = async (event: SyntheticEvent) => {
     event.preventDefault();

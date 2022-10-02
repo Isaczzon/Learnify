@@ -9,6 +9,7 @@ import { useAppDispatch } from '../redux/store/configureStore';
 const stripePromise = loadStripe("pk_test_51LmDPhAFoiC8oPIFM17PXiyNNAH4Gh9gWSGSA5K4THSwMnNb6WUZjNEa8dBKdkVtkoLSk4LktsvLFYh8399JgXXY00Bgs5Tkxq");
 
 export default function CheckoutPage() {
+  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
