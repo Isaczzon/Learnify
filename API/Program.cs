@@ -24,10 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<TokenService>();
             builder.Services.AddScoped<PaymentService>();
-            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             builder.Services.AddAutoMapper(typeof(MappingProfiles));
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddControllers();
             builder.Services.AddDbContext<StoreContext>(x =>
             {
