@@ -1,5 +1,3 @@
-using System;
-
 namespace API.Dto
 {
     public class BasketItemDto

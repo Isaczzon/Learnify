@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using API.Dto;
 using AutoMapper;
-using Entity;
-using Entity.Interfaces;
 using Entity.Specifications;
-using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
