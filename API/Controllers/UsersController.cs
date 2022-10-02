@@ -19,7 +19,6 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
-
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
@@ -30,14 +29,19 @@ namespace API.Controllers
             }
 
             var userBasket = await ExtractBasket(user.UserName);
+
             var basket = await ExtractBasket(Request.Cookies["clientId"]);
+
             var courses = _context.UserCourses.AsQueryable();
 
             if (basket != null)
             {
                 if (userBasket != null) _context.Baskets.Remove(userBasket);
+
                 basket.ClientId = user.UserName;
+
                 Response.Cookies.Delete("clientId");
+                
                 await _context.SaveChangesAsync();
             }
 
@@ -51,7 +55,6 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             var user = new User { UserName = registerDto.UserName, Email = registerDto.Email };
@@ -77,7 +80,6 @@ namespace API.Controllers
         }
 
         [Authorize]
-
         [HttpPost("purchaseCourses")]
         public async Task<ActionResult> AddCourses()
         {
@@ -103,7 +105,6 @@ namespace API.Controllers
         }
 
         [Authorize]
-
         [HttpGet("currentUser")]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
@@ -123,9 +124,7 @@ namespace API.Controllers
         }
 
         [Authorize]
-
         [HttpPost("addRole")]
-
         public async Task<ActionResult> AddRole()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -136,9 +135,7 @@ namespace API.Controllers
         }
 
         [Authorize]
-        
         [HttpGet("unpublishedCourses")]
-
         public List<Course> unpublishedCourses()
         {
             var courses = _context.Courses.Where(x => x.Instructor == User.Identity.Name).Where(x => x.Published == false).ToList();

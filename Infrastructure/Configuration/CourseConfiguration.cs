@@ -16,10 +16,6 @@ namespace Infrastructure.Configuration
             builder.Property(p => p.Instructor).IsRequired();
             builder.Property(p => p.Image).IsRequired();
             builder.Property(p => p.Rating).HasColumnType("decimal(18,1)");
-
-            // builder.HasOne(b => b.Category)
-            // .WithMany()
-            // .HasForeignKey(p => p.CategoryId);
         }
     }
 }
