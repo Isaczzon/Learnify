@@ -54,7 +54,7 @@ const BasketPage = () => {
     <div className="basket-page">
       <h1 className="basket-page__header">Shopping Cart</h1>
       <h2 className="basket-page__sub-header">{`${basketCount} ${
-        basketCount! > 1 ? "courses" : "course"
+        basketCount! !== 1 ? "courses" : "course"
       } in the Cart`}</h2>
       <div className="basket-page__body">
         <div className="basket-page__body__table">
