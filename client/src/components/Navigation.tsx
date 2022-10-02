@@ -28,14 +28,16 @@ const Navigation = () => {
     history.push("/");
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-  };
-
   const onSearch = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(setCourseParams({ search: searchText }));
   };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+
+  
 
   return (
     <div className="nav-container">
@@ -90,11 +92,11 @@ const Navigation = () => {
           </ul>
         </div>
         <div className="nav__right">
-          <form onSubmit={onSearch} className="nav__right__search">
+          <form onChange={onSearch} className="nav__right__search">
             <input
               type="text"
               className="nav__right__search__input"
-              placeholder="Search Courses..."
+              placeholder="Search courses..."
               onChange={handleChange}
               value={searchText}
             />
