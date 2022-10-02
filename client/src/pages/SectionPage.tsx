@@ -6,16 +6,14 @@ import { getUnpublishedCourses } from "../redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const SectionPage = ({ match }: RouteComponentProps<any>) => {
+
   const [sectionName, setSectionName] = useState<string>("");
   const [lectureForm, setLectureForm] = useState<any>([]);
-
   const { unpublishedCourses } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
   const history = useHistory();
+  const currentCourse = unpublishedCourses.find((course: any) => course.id === match.params.course);
 
-  const currentCourse = unpublishedCourses.find(
-    (course: any) => course.id === match.params.course
-  );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!unpublishedCourses) dispatch(getUnpublishedCourses());
@@ -26,9 +24,7 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
       return true;
     }
 
-    const someEmpty = lectureForm.some(
-      (item: any) => item.Url === "" || item.Title === ""
-    );
+    const someEmpty = lectureForm.some((item: any) => item.Url === "" || item.Title === "");
 
     if (someEmpty) {
       lectureForm.forEach((item: any, index: number) => {

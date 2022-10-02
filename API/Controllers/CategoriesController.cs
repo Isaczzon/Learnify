@@ -13,15 +13,15 @@ namespace API.Controllers
             this.mapper = mapper;
             _repository = repository;
         }
-        [HttpGet]
 
+        [HttpGet]
         public async Task<ActionResult<IReadOnlyList<CategoriesDto>>> GetCategories()
         {
             var categories = await _repository.ListAllAsync();
             return Ok(this.mapper.Map<IReadOnlyList<Category>, IReadOnlyList<CategoriesDto>>(categories));
         }
-        [HttpGet("{id}")]
 
+        [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDto>> GetCategory(int id)
         {
             var spec = new CategoriesWithCoursesSpecification(id);

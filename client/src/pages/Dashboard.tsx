@@ -6,6 +6,7 @@ import { addRole, fetchCurrentUser } from "../redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const Dashboard = () => {
+  
   const { userCourses, user } = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();

@@ -44,7 +44,6 @@ namespace API.Controllers
         }
 
         [Authorize(Roles = "Instructor")]
-
         [HttpPost]
         public async Task<ActionResult<string>> CreateCourse([FromBody] Course course)
         {
@@ -60,11 +59,9 @@ namespace API.Controllers
         }
 
         [Authorize(Roles = "Instructor")]
-
         [HttpPost("publish/{courseId}")]
         public async Task<ActionResult<string>> PublishCourse(Guid courseId)
         {
-
             var course = await _context.Courses.FindAsync(courseId);
 
             if (course == null) return NotFound(new ApiResponse(404));

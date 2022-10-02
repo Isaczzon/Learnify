@@ -24,9 +24,10 @@ import { getCategoriesAsync } from './redux/slice/categorySlice';
 import SectionPage from './pages/SectionPage';
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const dispatch = useAppDispatch();
 
+  const [loading, setLoading] = useState(true);
+  
+  const dispatch = useAppDispatch();
 
   const appInit = useCallback(async () => {
     try {

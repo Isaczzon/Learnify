@@ -7,10 +7,12 @@ import { getUnpublishedCourses } from "../redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const InstructorPage = () => {
+
   const history = useHistory();
+  const { unpublishedCourses } = useAppSelector((state) => state.user);
+
   const dispatch = useAppDispatch();
 
-  const { unpublishedCourses } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getUnpublishedCourses());

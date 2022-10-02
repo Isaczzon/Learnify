@@ -25,6 +25,7 @@ namespace Infrastructure
                     };
 
                     await userManager.CreateAsync(student, "Password@123");
+
                     await userManager.AddToRoleAsync(student, "Student");
 
                     var instructor = new User
@@ -34,13 +35,16 @@ namespace Infrastructure
                     };
 
                     await userManager.CreateAsync(instructor, "Password@123");
+
                     await userManager.AddToRolesAsync(instructor, new[] { "Instructor", "Student" });
                 }
 
                 if (!context.Categories.Any())
                 {
                     var categoryData = File.ReadAllText("../Infrastructure/SeedData/categories.json");
+
                     var categories = JsonSerializer.Deserialize<List<Category>>(categoryData);
+
                     foreach (var item in categories)
                     {
                         context.Categories.Add(item);
@@ -51,7 +55,9 @@ namespace Infrastructure
                 if (!context.Courses.Any())
                 {
                     var courseData = File.ReadAllText("../Infrastructure/SeedData/courses.json");
+
                     var courses = JsonSerializer.Deserialize<List<Course>>(courseData);
+
                     foreach (var item in courses)
                     {
                         context.Courses.Add(item);
@@ -62,7 +68,9 @@ namespace Infrastructure
                 if (!context.Learnings.Any())
                 {
                     var learningData = File.ReadAllText("../Infrastructure/SeedData/learnings.json");
+
                     var learnings = JsonSerializer.Deserialize<List<Learning>>(learningData);
+
                     foreach (var item in learnings)
                     {
                         context.Learnings.Add(item);
@@ -73,7 +81,9 @@ namespace Infrastructure
                 if (!context.Requirements.Any())
                 {
                     var requirementData = File.ReadAllText("../Infrastructure/SeedData/requirements.json");
+
                     var requirements = JsonSerializer.Deserialize<List<Requirement>>(requirementData);
+
                     foreach (var item in requirements)
                     {
                         context.Requirements.Add(item);
@@ -84,6 +94,7 @@ namespace Infrastructure
                 if (!context.Sections.Any())
                 {
                     var sectionsData = File.ReadAllText("../Infrastructure/SeedData/sections.json");
+
                     var sections = JsonSerializer.Deserialize<List<Section>>(sectionsData);
 
                     foreach (var item in sections)
@@ -107,6 +118,7 @@ namespace Infrastructure
                 if (!context.Lectures.Any())
                 {
                     var lecturesData = File.ReadAllText("../Infrastructure/SeedData/lectures.json");
+
                     var lectures = JsonSerializer.Deserialize<List<Lecture>>(lecturesData);
 
                     foreach (var item in lectures)
@@ -120,11 +132,8 @@ namespace Infrastructure
                             Url = item.Url,
                             Section = section
                         };
-
                         context.Lectures.Add(item);
-
                     }
-
                     await context.SaveChangesAsync();
                 }
             }
@@ -132,7 +141,6 @@ namespace Infrastructure
             {
                 logger.LogError(ex.Message);
             }
-
         }
     }
 }

@@ -18,7 +18,6 @@ namespace API.Controllers
         }
 
         [Authorize]
-
         [HttpPost]
         public async Task<ActionResult<BasketDto>> PaymentIntentAsync()
         {

@@ -12,6 +12,7 @@ interface Props extends RouteProps {
 }
 
 const PrivateRoute = ({ component: Component, ...rest }: Props) => {
+  
   const { user } = useAppSelector((state) => state.user);
 
   return (

@@ -17,7 +17,6 @@ namespace API.Controllers
         }
 
         [Authorize]
-
         [HttpGet("{courseId}")]
         public async Task<ActionResult<UserLectureDto>> GetLectures(Guid courseId)
         {
@@ -35,15 +34,12 @@ namespace API.Controllers
                 Sections = _mapper.Map<List<Section>, List<SectionDto>>(sections),
                 CurrentLecture = userCourse.CurrentLecture
             };
-
         }
 
         [Authorize]
-
         [HttpPut("setCurrentLecture")]
         public async Task<ActionResult> UpdateCurrentLecture([FromBody] UpdateLectureDto updateLectureDto)
         {
-
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             var userCourse = _context.UserCourses.Where(x => x.User == user).Where(x => x.CourseId == updateLectureDto.CourseId).First();
@@ -55,7 +51,6 @@ namespace API.Controllers
             if (result) return Ok();
 
             return BadRequest(new ApiResponse(400, "Problem updating the lecture"));
-
         }
 
         [Authorize(Roles = "Instructor")]

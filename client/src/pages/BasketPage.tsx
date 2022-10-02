@@ -7,10 +7,12 @@ import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 import { removeBasketItemAsync } from "../redux/slice/basketSlice";
 
 const BasketPage = () => {
+
   const { basket } = useAppSelector(state => state.basket);
-  const dispatch = useAppDispatch();
   const basketCount = basket?.items.length || 0;
   const total = basket?.items.reduce((sum, item) => sum + item!.price, 0);
+
+  const dispatch = useAppDispatch();
 
   const columns = [
     {

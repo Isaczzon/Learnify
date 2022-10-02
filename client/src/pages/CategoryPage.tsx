@@ -8,6 +8,7 @@ import { Course } from "../models/course";
 import { Category } from "../models/category";
 
 const CategoryPage = () => {
+  
   const [data, setData] = useState<Category>();
   const { id } = useParams<{ id: string }>();
 

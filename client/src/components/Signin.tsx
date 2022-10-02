@@ -13,16 +13,18 @@ interface Props {
 }
 
 const Signin = ({ toggleRegister }: Props) => {
+
+  const history = useHistory();
+  const [form] = Form.useForm();
+
+  const dispatch = useAppDispatch();
+
   const [values, setValues] = useState<Login>({
     email: "",
     password: "",
   });
 
-  const dispatch = useAppDispatch();
-
   const { email, password } = values;
-
-  const [form] = Form.useForm();
 
   const resetForm = () => {
     setValues({ ...values, email: "", password: "" });
@@ -33,8 +35,6 @@ const Signin = ({ toggleRegister }: Props) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-
-  const history = useHistory();
 
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -67,7 +67,6 @@ const Signin = ({ toggleRegister }: Props) => {
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             autoComplete="off"
-            // onSubmitCapture={submitUser}
             initialValues={values}
             onFinish={submitUser}
             form={form}

@@ -76,7 +76,6 @@ namespace API.Controllers
             if (result) return Ok();
 
               return BadRequest(new ApiResponse(400, "Problem clearing the basket"));
-
         }
 
         private Basket CreateBasket()
