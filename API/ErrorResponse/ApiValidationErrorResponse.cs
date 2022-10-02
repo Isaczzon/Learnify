@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace API.ErrorResponse
 {
     public class ApiValidationErrorResponse : ApiResponse

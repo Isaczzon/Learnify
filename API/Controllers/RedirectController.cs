@@ -1,6 +1,3 @@
-using API.ErrorResponse;
-using Microsoft.AspNetCore.Mvc;
-
 namespace API.Controllers
 {
     [Route("redirect/{code}")]

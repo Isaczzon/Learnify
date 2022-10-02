@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace API.Dto
 {
     public class SectionDto
