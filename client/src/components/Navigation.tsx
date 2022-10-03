@@ -2,7 +2,7 @@ import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo-Learnify.png";
 import { removeBasket } from "../redux/slice/basketSlice";
 import { setCourseParams } from "../redux/slice/courseSlice";
 import { signOut } from "../redux/slice/userSlice";
@@ -36,8 +36,6 @@ const Navigation = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
-
-  
 
   return (
     <div className="nav-container">
@@ -75,11 +73,10 @@ const Navigation = () => {
               </ul>
             </nav>
           </div>
+          <Link to="/">
           <img className="nav__left__logo" src={Logo} alt="Logo" />
+          </Link>
           <ul className="nav__left__list">
-            <Link to="/">
-              <li className="nav__left__list__item">Home</li>
-            </Link>
             {user ? (
               <li className="nav__left__list__item">
                 <UserMenu />
