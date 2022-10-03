@@ -19,8 +19,8 @@ const CoursePage = ({ match }: RouteComponentProps<any>) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!lecture) dispatch(getLecturesAsync({ courseId: match.params.course }));
-  }, [dispatch, match, lecture]);
+    dispatch(getLecturesAsync({ courseId: match.params.course }));
+  }, [dispatch, match.params.course, currentLecture]);
 
   useEffect(() => {
     if (currentLecture === 0) {
