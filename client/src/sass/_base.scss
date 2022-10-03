@@ -12,6 +12,19 @@ $color-grey-light-2: #aaa;
 $color-grey-dark-1: #54483a;
 $color-grey-dark-2: #6d5d4b;
 
+// StandardColors
+
+$color-white-standard: white;
+$color-grey-standard: rgb(31, 31, 31);
+
+$color-yellow-orange-standard-light: rgb(79, 144, 241);
+$color-yellow-orange-standard-dark: rgb(19, 106, 206);
+$color-blue-standard-light: rgb(79, 144, 241);
+$color-blue-standard-dark: rgb(19, 106, 206);
+
+$color-green-standard-light: rgb(68, 165, 118);
+$color-green-standard-dark: rgb(12, 63, 38);
+
 $color-primary: #261e7d;
 $color-primary-dark: #0e0545;
 
@@ -34,4 +47,29 @@ html {
 
 body {
     font-family: $font-primary;
+    background: linear-gradient(
+        -45deg, 
+        $color-blue-standard-dark, 
+        $color-blue-standard-light,
+        $color-white-standard,
+        $color-blue-standard-light, 
+        $color-white-standard,
+        $color-blue-standard-dark
+    );
+
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 .categories {
-  background-color: white;
+  background-color: $color-blue-standard-dark;
   height: 50px;
   display: flex;
   width: 100%;
@@ -19,6 +19,7 @@
   &__name {
     color: black;
     font-weight: bold;
+    text-shadow: 10px;
 
     &:hover {
       text-decoration: underline;

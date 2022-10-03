@@ -1,5 +1,5 @@
 .nav-container {
-    background-color: $color-grey-light-1;
+    background-color: $color-grey-standard;
     margin: -10px;
     padding: 10px 5px;
   }
@@ -27,7 +27,7 @@
   
       &__hamburger {
         display: none;
-        color: $color-grey-dark-2;
+        color: $color-white-standard;
         font-size: 1em;
         margin-left: 20px;
         z-index: 100;
@@ -38,8 +38,8 @@
       }
   
       &__logo {
-        width: 55px;
-        height: 55px;
+        width: 150px;
+        height: 50px;
       }
   
       &__list {
@@ -47,7 +47,7 @@
         list-style: none;
   
         &__item {
-          color: $color-grey-dark-1;
+          color: $color-white-standard;
           margin: 0 20px;
           font-size: 18px;
           font-weight: 600;
@@ -111,7 +111,7 @@
         margin-left: 20px;
         font-size: 1.2em;
         position: relative;
-        color: $color-grey-dark-1;
+        color: $color-white-standard;
       
         &__count {
           position: absolute;
