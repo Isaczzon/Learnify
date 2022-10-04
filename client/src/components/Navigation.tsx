@@ -49,7 +49,7 @@ const Navigation = () => {
                   <FaIcons.FaChevronLeft />
                 </li>
 
-                <li className="nav-menu-items__header">Navigation</li>
+                <li className="nav-menu-items__header">Menu</li>
                 <Link to="/">
                   {" "}
                   <li>Home</li>{" "}
@@ -57,16 +57,20 @@ const Navigation = () => {
                 {user ? (
                   <>
                     {" "}
-                    <Link to="login">
+                    <Link to="profile">
                       <li>Profile</li>
                     </Link>{" "}
+                    {" "}
+                    {user?.roles?.includes("Instructor") && (
+                      <Link to="/instructor"><li>Instructor</li></Link>)}
+                      {" "}
                     <div onClick={signout}>
                       {" "}
                       <li>Logout</li>{" "}
                     </div>{" "}
                   </>
                 ) : (
-                  <Link to="/">
+                  <Link to="/login">
                     <li>Login</li>
                   </Link>
                 )}
@@ -93,7 +97,7 @@ const Navigation = () => {
             <input
               type="text"
               className="nav__right__search__input"
-              placeholder="Search courses..."
+              placeholder="Search..."
               onChange={handleChange}
               value={searchText}
             />
