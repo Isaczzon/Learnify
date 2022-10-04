@@ -23,7 +23,7 @@ const ShowCourses = ({ course }: Props) => {
     if (window.innerWidth > 1024) {
       setSpanVal(8);
     } else if (window.innerWidth < 1024 && window.innerWidth > 768) {
-      setSpanVal(16);
+      setSpanVal(12);
     } else {
       setSpanVal(22);
     }
