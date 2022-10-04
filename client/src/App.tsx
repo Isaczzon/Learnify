@@ -22,6 +22,7 @@ import InstructorPage from './pages/InstructorPage';
 import CreateCourse from './pages/CreateCourse';
 import { getCategoriesAsync } from './redux/slice/categorySlice';
 import SectionPage from './pages/SectionPage';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
         <PrivateRoute exact path="/instructor/course" component={CreateCourse} />
         <PrivateRoute exact path="/:course/lectures" component={SectionPage} />
       </Switch>
+      <Footer />
     </>
   );
 }
