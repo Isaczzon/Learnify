@@ -45,14 +45,15 @@ const Homepage = () => {
   };
 
   return (
+    <div className="background__gradient">
     <div className="course">
       <div className="course__header">
         <h1>What to learn next?</h1>
         <h2>Courses picked just for you...</h2>
       </div>
-      <Row gutter={[120, 30]}>
+      <Row className="course__courses" gutter={[120, 30]}>
         <Col span={4}>
-          <Card className="homepage__sort" title="Sort Options">
+          <Card className="homepage__sort" title="Sort your options">
             <Radio.Group
               value={courseParams.sort}
               options={sortOptions}
@@ -61,7 +62,7 @@ const Homepage = () => {
               }
             />
           </Card>
-          <Card className="homepage__sort" title="Category">
+          <Card className="homepage__sort" title="Choose Category">
             <Radio.Group
               value={courseParams.category}
               options={getCategories()}
@@ -90,6 +91,7 @@ const Homepage = () => {
           </div>
         </Col>
       </Row>
+    </div>
     </div>
   );
 };
