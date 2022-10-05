@@ -15,14 +15,14 @@ const BasketPage = () => {
   const dispatch = useAppDispatch();
 
   const columns = [
-    {
-      title: "Image",
-      dataIndex: "image",
-      key: "image",
-      render: (url: string) => {
-        return <img width="100px" src={url} alt={url} />;
-      },
-    },
+    // {
+    //   title: "Image",
+    //   dataIndex: "image",
+    //   key: "image",
+    //   render: (url: string) => {
+    //     return <img width="100px" src={url} alt={url} />;
+    //   },
+    // },
     {
       title: "Title",
       dataIndex: "title",

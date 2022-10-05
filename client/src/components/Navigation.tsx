@@ -10,7 +10,6 @@ import { useAppSelector } from "../redux/store/configureStore";
 import UserMenu from "./UserMenu";
 
 const Navigation = () => {
-  
   const [sidebar, setSidebar] = useState(false);
   const [searchText, setSearchText] = useState("");
   const { basket } = useAppSelector((state) => state.basket);
@@ -21,10 +20,9 @@ const Navigation = () => {
   const showSidebar = () => setSidebar(!sidebar);
   const dispatch = useDispatch();
 
-
   const signout = () => {
     dispatch(signOut());
-    dispatch(removeBasket())
+    dispatch(removeBasket());
     history.push("/");
   };
 
@@ -48,7 +46,6 @@ const Navigation = () => {
                 <li className="cancel">
                   <FaIcons.FaChevronLeft />
                 </li>
-
                 <li className="nav-menu-items__header">Menu</li>
                 <Link to="/">
                   {" "}
@@ -60,10 +57,11 @@ const Navigation = () => {
                     <Link to="profile">
                       <li>Profile</li>
                     </Link>{" "}
-                    {" "}
                     {user?.roles?.includes("Instructor") && (
-                      <Link to="/instructor"><li>Instructor</li></Link>)}
-                      {" "}
+                      <Link to="/instructor">
+                        <li>Instructor</li>
+                      </Link>
+                    )}{" "}
                     <div onClick={signout}>
                       {" "}
                       <li>Logout</li>{" "}
@@ -78,7 +76,7 @@ const Navigation = () => {
             </nav>
           </div>
           <Link to="/">
-          <img className="nav__left__logo" src={Logo} alt="Logo" />
+            <img className="nav__left__logo" src={Logo} alt="Logo" />
           </Link>
           <ul className="nav__left__list">
             {user ? (
