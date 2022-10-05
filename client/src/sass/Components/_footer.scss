@@ -1,12 +1,16 @@
 .footer-container {
-  background-color: $color-grey-standard;
-  padding: 10px 5px;
+  padding: 10px 5px 30px 0;
+  margin-top: auto;
+  position: absolute;
+  width: 100%;
+  height: 50px;
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  background-color: $color-grey-standard;
 
   @media only screen and (max-width: $bp-small) {
     display: flex !important;
