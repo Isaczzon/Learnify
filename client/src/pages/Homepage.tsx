@@ -51,7 +51,7 @@ const Homepage = () => {
         <h1>What to learn next?</h1>
         <h2>Courses picked just for you...</h2>
       </div>
-      <Row className="course__courses" gutter={[120, 30]}>
+      <Row gutter={[105, 30]}>
         <Col span={4}>
           <Card className="homepage__sort" title="Sort your options">
             <Radio.Group
