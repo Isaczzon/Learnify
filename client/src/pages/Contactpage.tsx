@@ -20,9 +20,12 @@ const ContactPage: React.FC = () => {
   };
 
   const validateMessages = {
+    // eslint-disable-next-line
     required: "${label} is required!",
     types: {
+      // eslint-disable-next-line
       email: "${label} is not a valid email!",
+      // eslint-disable-next-line
       number: "${label} is not a valid number!",
     },
   };
@@ -68,14 +71,22 @@ const ContactPage: React.FC = () => {
               <Form.Item
                 name={["user", "email"]}
                 label="Email"
-                rules={[{ type: "email", required: true, pattern: new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) }]}
+                rules={[
+                  {
+                    type: "email",
+                    required: true,
+                    pattern: new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
                 name="Phone number"
                 label="Number"
-                rules={[{ type: "number", pattern: new RegExp(/^[a-zA-Z0-9]*$/) }]}
+                rules={[
+                  { type: "number", pattern: new RegExp(/^[a-zA-Z0-9]*$/) },
+                ]}
               >
                 <InputNumber className="contact__form__input-number" />
               </Form.Item>
