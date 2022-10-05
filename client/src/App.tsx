@@ -23,6 +23,7 @@ import CreateCourse from './pages/CreateCourse';
 import { getCategoriesAsync } from './redux/slice/categorySlice';
 import SectionPage from './pages/SectionPage';
 import Footer from './components/Footer';
+import ContactPage from './pages/Contactpage';
 
 function App() {
 
@@ -58,6 +59,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/basket" component={BasketPage} />
+        <Route exact path="/contact" component={ContactPage} />
         <PrivateRoute exact path="/profile" component={Dashboard} />
         <PrivateRoute exact path="/checkout" component={CheckoutPage} />
         <PrivateRoute exact path="/learn/:course/:lecture" component={CoursePage} />
