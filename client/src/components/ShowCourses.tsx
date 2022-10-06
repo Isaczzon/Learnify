@@ -31,7 +31,7 @@ const ShowCourses = ({ course }: Props) => {
 
   useLayoutEffect(() => {
     window.addEventListener("resize", checkWidth);
-    return () => window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
   useEffect(() => {
