@@ -2,7 +2,7 @@ import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import Logo from "../assets/logo.png";
+import Logo from "../Assets/logo-Learnify.png";
 import { removeBasket } from "../redux/slice/basketSlice";
 import { setCourseParams } from "../redux/slice/courseSlice";
 import { signOut } from "../redux/slice/userSlice";
@@ -10,7 +10,6 @@ import { useAppSelector } from "../redux/store/configureStore";
 import UserMenu from "./UserMenu";
 
 const Navigation = () => {
-  
   const [sidebar, setSidebar] = useState(false);
   const [searchText, setSearchText] = useState("");
   const { basket } = useAppSelector((state) => state.basket);
@@ -21,10 +20,9 @@ const Navigation = () => {
   const showSidebar = () => setSidebar(!sidebar);
   const dispatch = useDispatch();
 
-
   const signout = () => {
     dispatch(signOut());
-    dispatch(removeBasket())
+    dispatch(removeBasket());
     history.push("/");
   };
 
@@ -37,8 +35,6 @@ const Navigation = () => {
     setSearchText(e.target.value);
   };
 
-  
-
   return (
     <div className="nav-container">
       <div className="nav">
@@ -50,8 +46,7 @@ const Navigation = () => {
                 <li className="cancel">
                   <FaIcons.FaChevronLeft />
                 </li>
-
-                <li className="nav-menu-items__header">Navigation</li>
+                <li className="nav-menu-items__header">Menu</li>
                 <Link to="/">
                   {" "}
                   <li>Home</li>{" "}
@@ -59,27 +54,31 @@ const Navigation = () => {
                 {user ? (
                   <>
                     {" "}
-                    <Link to="login">
+                    <Link to="profile">
                       <li>Profile</li>
                     </Link>{" "}
+                    {user?.roles?.includes("Instructor") && (
+                      <Link to="/instructor">
+                        <li>Instructor</li>
+                      </Link>
+                    )}{" "}
                     <div onClick={signout}>
                       {" "}
                       <li>Logout</li>{" "}
                     </div>{" "}
                   </>
                 ) : (
-                  <Link to="/">
+                  <Link to="/login">
                     <li>Login</li>
                   </Link>
                 )}
               </ul>
             </nav>
           </div>
-          <img className="nav__left__logo" src={Logo} alt="Logo" />
+          <Link to="/">
+            <img className="nav__left__logo" src={Logo} alt="Logo" />
+          </Link>
           <ul className="nav__left__list">
-            <Link to="/">
-              <li className="nav__left__list__item">Home</li>
-            </Link>
             {user ? (
               <li className="nav__left__list__item">
                 <UserMenu />
@@ -96,7 +95,7 @@ const Navigation = () => {
             <input
               type="text"
               className="nav__right__search__input"
-              placeholder="Search courses..."
+              placeholder="Search..."
               onChange={handleChange}
               value={searchText}
             />
@@ -108,7 +107,7 @@ const Navigation = () => {
               <FaIcons.FaSearch />
             </button>
           </form>
-          <Link to="/basket">
+          <Link aria-label="Basket" to="/basket">
             <div className="nav__right__cart">
               <FaIcons.FaShoppingCart />
               {basketCount! > 0 && (
