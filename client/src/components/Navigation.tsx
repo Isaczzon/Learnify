@@ -107,7 +107,7 @@ const Navigation = () => {
               <FaIcons.FaSearch />
             </button>
           </form>
-          <Link to="/basket">
+          <Link aria-label="Basket" to="/basket">
             <div className="nav__right__cart">
               <FaIcons.FaShoppingCart />
               {basketCount! > 0 && (
