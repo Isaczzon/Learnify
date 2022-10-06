@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, InputNumber, Typography } from "antd";
+import { Button, Card, Form, Input, InputNumber, message, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -10,8 +10,9 @@ const ContactPage: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
-    history.push("/thanks");
+    history.push("/");
     resetForm();
+    thanks();
   };
 
   const layout = {
@@ -30,6 +31,10 @@ const ContactPage: React.FC = () => {
     },
   };
 
+  const thanks = () => {
+    message.success("Thank you for your message, we will be in touch soon!");
+  };
+
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -41,6 +46,7 @@ const ContactPage: React.FC = () => {
     setValues({ ...values, name: "", email: "", number: "", textarea: "" });
     form.resetFields();
   };
+  
 
   return (
     <>
