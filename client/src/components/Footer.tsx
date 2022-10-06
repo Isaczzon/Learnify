@@ -1,8 +1,12 @@
 import { Row } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
+import Subscription from "./Subscription";
+
+
 
 const Footer = () => {
+  
   return (
     <div className="footer-container">
       <div className="footer">
@@ -42,22 +46,8 @@ const Footer = () => {
               <div className="footer__right__information__specific">
                 Register here:
               </div>
-              <div className="footer__right__information__input">
-                <input
-                  type="email"
-                  name="Email"
-                  placeholder="example@example.com"
-                  required
-                />
-              </div>
               <div className="footer__right__information__specific">
-                <button
-                  className="footer__right__information__specific__button"
-                  type="submit"
-                  name="Submit"
-                >
-                  Subscribe
-                </button>
+                <Subscription>Subscribe</Subscription>
               </div>
             </div>
           </Row>
